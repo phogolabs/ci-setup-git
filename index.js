@@ -1,18 +1,18 @@
 const core = require('@actions/core');
-const wait = require('./wait');
-
+const {gitup} = require('./setup');
 
 // most @actions toolkit packages have async methods
 async function run() {
   try {
-    const ms = core.getInput('milliseconds');
-    core.info(`Waiting ${ms} milliseconds ...`);
+    const ms = core.getInput('token');
 
-    core.debug((new Date()).toTimeString()); // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
-    await wait(parseInt(ms));
-    core.info((new Date()).toTimeString());
+    core.info(`Setup env ...`);
+    await envup();
 
-    core.setOutput('time', new Date().toTimeString());
+    // setup git
+    core.info(`Setup git ...`);
+    await gitup(token);
+
   } catch (error) {
     core.setFailed(error.message);
   }
