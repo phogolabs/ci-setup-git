@@ -1,13 +1,15 @@
 const core = require('@actions/core');
-const {gitup} = require('./setup');
+const {gitup, envup} = require('./setup');
 
 // most @actions toolkit packages have async methods
 async function run() {
   try {
-    const ms = core.getInput('token');
+    // get input
+    const token = core.getInput('token');
 
+    // setup env
     core.info(`Setup env ...`);
-    await envup();
+    envup();
 
     // setup git
     core.info(`Setup git ...`);

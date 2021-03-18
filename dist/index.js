@@ -6,15 +6,17 @@ require('./sourcemap-register.js');module.exports =
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __nccwpck_require__) => {
 
 const core = __nccwpck_require__(186);
-const {gitup} = __nccwpck_require__(602);
+const {gitup, envup} = __nccwpck_require__(602);
 
 // most @actions toolkit packages have async methods
 async function run() {
   try {
-    const ms = core.getInput('token');
+    // get input
+    const token = core.getInput('token');
 
+    // setup env
     core.info(`Setup env ...`);
-    await envup();
+    envup();
 
     // setup git
     core.info(`Setup git ...`);
