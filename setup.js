@@ -28,9 +28,9 @@ function getRepositoryOwner(repository) {
 }
 
 async function gitup(token) {
-  await sh(`git config --global user.name GitHub Action`)
-  await sh(`git config --global user.email github-action@users.noreply.github.com`)
-  await sh(`git config --global url."https://${token}:x-oauth-basic@github.com/".insteadOf "https://github.com/"`);
+  await sh(`git config user.name GitHub Action`)
+  await sh(`git config user.email github-action@users.noreply.github.com`)
+  await sh(`git config url."https://${token}:x-oauth-basic@github.com/".insteadOf "https://github.com/"`);
 }
 
 function envup() {
